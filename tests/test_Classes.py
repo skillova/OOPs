@@ -1,14 +1,14 @@
 import pathlib
 import pytest
 
-from src.utils.func import get_data_from_json, get_Category
+from src.utils.func import get_data_from_json, get_category_products
 
 
 @pytest.fixture
 def category_data():
     path = pathlib.Path.cwd() / 'data' / 'products.json'
     data = get_data_from_json(path)
-    return get_Category(data)
+    return get_category_products(data)
 
 
 # проверка последних объектов в списках
