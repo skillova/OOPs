@@ -30,3 +30,19 @@ class Product:
                 print('Новая цена не установлена')
         else:
             print('Цена введена некорректная')
+
+    def __add__(self, other):
+        """Сложение продуктов, умноженных на количество на складе"""
+        return self.quantity * self.__price + other
+
+    def __radd__(self, other):
+        """Сложение пользовательского значения <int> и стоимости, умноженного на количество на складе"""
+        return other + self.quantity * self.__price
+
+    def __str__(self):
+        """Строковое отображение объекта класса в формате (<name>, <price> руб. Остаток: <quantity> шт.)"""
+        return f'{self.name}, {self.__price} руб. Остаток: {self.quantity} шт.'
+
+    def __repr__(self):
+        """Отображение информации об объекте класса в режиме отладки (для разработчиков)"""
+        return f'{self.__class__.__name__} -> ({self.name}, {self.description}, {self.__price}, {self.quantity}'
