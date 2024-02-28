@@ -1,5 +1,6 @@
-import pathlib
 import json
+import pathlib
+
 from src.Classes.category import Category
 from src.Classes.product import Product
 
