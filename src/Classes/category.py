@@ -34,5 +34,13 @@ class Category:
         """Возвращает список продуктов в формате (<name>, <price> руб. Остаток: <quantity> шт.)"""
         product_list = []
         for product in self.__products:
-            product_list.append(f'{product.name}, {product.price} руб. Остаток: {product.quantity} шт.')
+            product_list.append(product.__str__())
         return product_list
+
+    def __str__(self):
+        """Строковое отображение объекта класса в формате (<name>, количество продуктов: <XXX> шт.)"""
+        return f'{self.name}, количество продуктов: {len(self.set_products)} шт.'
+
+    def __repr__(self):
+        """Отображение информации об объекте класса в режиме отладки (для разработчиков)"""
+        return f'{self.__class__.__name__} -> "{self.name}, {self.description}, {self.__products}"'

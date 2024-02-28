@@ -35,8 +35,8 @@ def test_product_init(category_data):
 
 def test_category_get_format_products(category_data):
     """Тест списка продуктов в формате (<name>, <price> руб. Остаток: <quantity> шт.)"""
-    category = category_data[-1]
-    assert category.get_format_products[0] == '55" QLED 4K, 123000.0 руб. Остаток: 7 шт.'
+    format_product = category_data[-1].set_products[-1]
+    assert format_product.__str__() == '55" QLED 4K, 123000.0 руб. Остаток: 7 шт.'
 
 
 def test_product_new_product_object():
@@ -69,3 +69,18 @@ def test_category_add_product(category_data):
     assert category.set_products[-1].name == 'Dildo'
     assert category.set_products[-1].price == 60000.0
     assert category.set_products[-1].quantity == 100
+
+
+def test_category_str_(category_data):
+    """Тест отображения объекта класса <Category> в формате (<name>, количество продуктов: <XXX> шт."""
+    assert category_data[0].__str__() == 'Смартфоны, количество продуктов: 3 шт.'
+    assert category_data[-1].__str__() == 'Телевизоры, количество продуктов: 1 шт.'
+
+
+def test_product_add_(category_data):
+    """Тест сложения продуктов <quantity * price> + <other(quantity * price)>"""
+    bank = 0
+    for category in category_data:
+        for product in category.set_products:
+            bank += product
+    assert bank == 3875000.0
