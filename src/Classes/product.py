@@ -33,12 +33,11 @@ class Product:
             print('Цена введена некорректная')
 
     def __add__(self, other):
-        """Сложение продуктов, умноженных на количество на складе"""
-        return self.quantity * self.__price + other
-
-    def __radd__(self, other):
-        """Сложение пользовательского значения <int> и стоимости, умноженного на количество на складе"""
-        return other + self.quantity * self.__price
+        """Сложение продуктов с проверкой принадлежности к одному классу, умноженных на количество на складе"""
+        if isinstance(other, type(self)):
+            return self.price * self.quantity + other.price * other.quantity
+        else:
+            raise ValueError('Сложение возможно только двух одинаковых категорий')
 
     def __str__(self):
         """Строковое отображение объекта класса в формате (<name>, <price> руб. Остаток: <quantity> шт.)"""

@@ -84,12 +84,12 @@ def test_category_add_product(category_data):
                      "16/512 ГБ",
                      "White",
                      "ASUS ROG Phone 7 Ultimate 16/512 ГБ, Dual nano SIM, белый",
-                     210000.0,
+                     100.0,
                      5)
     new_product = SmartPhone(*data_products)
     category.set_products = new_product
     assert category.set_products[0].name == "ASUS"
-    assert category.set_products[0].price == 210000.0
+    assert category.set_products[0].price == 100.0
     assert category.set_products[0].quantity == 10
 
     data_products = ('Dildo', 'vibrato', 'Negro', 60000.0, 100)
@@ -108,8 +108,11 @@ def test_category_str_(category_data):
 
 def test_product_add_(category_data):
     """Тест сложения продуктов <quantity * price> + <other(quantity * price)>"""
-    bank = 0
-    for category in category_data:
-        for product in category.set_products:
-            bank += product
-    assert bank == 4921500.0
+    asus = category_data[0].set_products[0]
+    samsung = category_data[0].set_products[1]
+    canada_green = category_data[1].set_products[0]
+    assert (asus + samsung) == 2750000.0
+    with pytest.raises(ValueError) as val_err:
+        error = asus + canada_green
+    assert 'Сложение возможно только двух одинаковых категорий' in str(val_err.value)
+
