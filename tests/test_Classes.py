@@ -32,6 +32,7 @@ def test_product_init(category_data):
     assert product.price == 210000.0
     assert product.quantity == 5
 
+
 def test_smartphone_init(category_data):
     """Тест прохождения инициализации класса <SmartPhone>"""
     product = category_data[0].set_products[0]
@@ -44,6 +45,7 @@ def test_smartphone_init(category_data):
     assert product.price == 210000.0
     assert product.quantity == 5
 
+
 def test_lawn_grass_init(category_data):
     """Тест прохождения инициализации класса <LawnGrass>"""
     product = category_data[-1].set_products[0]
@@ -54,6 +56,7 @@ def test_lawn_grass_init(category_data):
     assert product.made_country == 'Russia'
     assert product.price == 2500.0
     assert product.quantity == 20
+
 
 def test_category_get_format_products(category_data):
     """Тест списка продуктов в формате (<name>, <price> руб. Остаток: <quantity> шт.)"""
@@ -99,6 +102,10 @@ def test_category_add_product(category_data):
     assert category.set_products[-1].price == 60000.0
     assert category.set_products[-1].quantity == 100
 
+    with pytest.raises(TypeError) as type_err:
+        category.set_products('OtherClass')
+    assert "'list' object is not callable" in str(type_err.value)
+
 
 def test_category_str_(category_data):
     """Тест отображения объекта класса <Category> в формате (<name>, количество продуктов: <XXX> шт."""
@@ -115,4 +122,3 @@ def test_product_add_(category_data):
     with pytest.raises(ValueError) as val_err:
         error = asus + canada_green
     assert 'Сложение возможно только двух одинаковых категорий' in str(val_err.value)
-
