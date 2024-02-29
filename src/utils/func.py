@@ -1,10 +1,12 @@
 import json
+
 import pathlib
 
 from src.Classes.category import Category
-from src.Classes.product import Product
+from src.Classes.lawn_grass import LawnGrass
+from src.Classes.smartphone import SmartPhone
 
-path = pathlib.Path.cwd().parent / 'data' / 'products.json'
+path = pathlib.Path.cwd().parent.parent / 'data' / 'products.json'
 
 
 def get_data_from_json(file):
@@ -13,18 +15,24 @@ def get_data_from_json(file):
         return json.load(fp=file)
 
 
-def get_category_products(data):
-    """Создает список объектов класса <Category> со списком объектов класса<Product>"""
+def get_category_list(data):
+    """Создает список объектов класса <Category> со списком объектов класса <Product>"""
     category_list = []
     for ctg in data:
+        product_object_list = []
         ctg_name: str = ctg.get('name')
         ctg_description: str = ctg.get('description')
-        products_list = []
         for product in ctg.get('products'):
-            prod_name: str = product.get('name')
-            prod_description: str = product.get('description')
-            prod_price: float = product.get('price')
-            quantity: int = product.get('quantity')
-            products_list.append(Product(prod_name, prod_description, prod_price, quantity))
-        category_list.append(Category(ctg_name, ctg_description, products_list))
+            data = list(product.values())
+            if ctg_name == "Смартфоны":
+                product_object = SmartPhone(*data)
+                product_object_list.append(product_object)
+            if ctg_name == "Трава газонная":
+                product_object = LawnGrass(*data)
+                product_object_list.append(product_object)
+        category_list.append(Category(ctg_name, ctg_description, product_object_list))
     return category_list
+
+# ctg_prod = get_data_from_json(path)
+# object_list = get_category_list(ctg_prod)
+# pprint(object_list)

@@ -44,3 +44,6 @@ class Category:
     def __repr__(self):
         """Отображение информации об объекте класса в режиме отладки (для разработчиков)"""
         return f'{self.__class__.__name__} -> "{self.name}, {self.description}, {self.__products}"'
+
+    def __del__(self):
+        pass

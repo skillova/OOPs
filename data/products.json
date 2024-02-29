@@ -4,34 +4,67 @@
     "description": "Смартфоны, как средство не только коммуникации, но и получение дополнительных функций для удобства жизни",
     "products": [
       {
-        "name": "Samsung Galaxy C23 Ultra",
-        "description": "256GB, Серый цвет, 200MP камера",
-        "price": 180000.0,
+        "name": "ASUS",
+        "model": "ROG Phone 7 Ultimate",
+        "efficiency": "3.2 Ghz",
+        "memory": "16/512 ГБ",
+        "color": "White",
+        "description": "ASUS ROG Phone 7 Ultimate 16/512 ГБ, Dual nano SIM, белый",
+        "price": 210000.0,
         "quantity": 5
       },
       {
-        "name": "Iphone 15",
-        "description": "512GB, Gray space",
-        "price": 210000.0,
-        "quantity": 8
+        "name": "Samsung",
+        "model": "Galaxy S24 Ultra",
+        "efficiency": "3.39 Ghz",
+        "memory": "12/1 ТБ",
+        "color": "Yellow",
+        "description": "Смартфон Samsung Galaxy S24 Ultra 12/1 ТБ, Dual: nano SIM + eSIM, Titanium Yellow",
+        "price": 170000.0,
+        "quantity": 10
       },
       {
-        "name": "Xiaomi Redmi Note 11",
-        "description": "1024GB, Синий",
-        "price": 31000.0,
-        "quantity": 14
+        "name": "Huawei",
+        "model": "Mate Xs 2",
+        "efficiency": "4 Ghz",
+        "memory": "8/512GB",
+        "color": "Black",
+        "description": "Смартфон Huawei Mate Xs 2 8/512GB Фактурный черный (RU)",
+        "price": 140000.0,
+        "quantity": 15
       }
     ]
   },
   {
-    "name": "Телевизоры",
-    "description": "Современный телевизор, который позволяет наслаждаться просмотром, станет вашим другом и помощником",
+    "name": "Трава газонная",
+    "description": "Приятно ходить босиком, но задал бывает ее косить",
     "products": [
       {
-        "name": "55\" QLED 4K",
-        "description": "Фоновая подсветка",
-        "price": 123000.0,
-        "quantity": 7
+        "name": "Канада Грин",
+        "description": "Быстро всходит, неприхотлив в уходе. Морозоустойчив, быстро восстанавливается.",
+        "color": "Green",
+        "germination": "10-14 day",
+        "made_country": "Russia",
+        "price": 2500.0,
+        "quantity": 20
+      },
+      {
+        "name": "ГазонCity",
+        "description": "Семена специально разработаны для простого и понятного выбора газона по целевому назначению",
+        "color": "Yellow",
+        "germination": "10 day",
+        "made_country": "Russia",
+        "price": 500.0,
+        "quantity": 25
+      },
+      {
+        "name": "Сила Суздаля",
+        "description": "Фацелия универсальный вариант для огорода в любом регионе России",
+        "color": "Red",
+        "germination": "7 day",
+        "made_country": "Russia",
+        "price": 300.0,
+        "quantity": 30
       }
     ]
   }
