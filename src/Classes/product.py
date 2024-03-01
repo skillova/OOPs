@@ -1,16 +1,17 @@
 class Product:
     """Класс для описания товара в магазине"""
 
-    def __init__(self, name: str, description: str, price: float, quantity: int) -> None:
+    def __init__(self, name: str, description: str, color: str, price: float, quantity: int) -> None:
         self.name = name
         self.description = description
         self.__price = price
         self.quantity = quantity
+        self.color = color
 
     @classmethod
-    def new_product_object(cls, name: str, description: str, price: float, quantity: int):
+    def new_product_object(cls, name: str, description: str, color: str, price: float, quantity: int):
         """Создание экземпляра класса Product"""
-        return cls(name, description, price, quantity)
+        return cls(name, description, color, price, quantity)
 
     @property
     def price(self):
@@ -32,12 +33,11 @@ class Product:
             print('Цена введена некорректная')
 
     def __add__(self, other):
-        """Сложение продуктов, умноженных на количество на складе"""
-        return self.quantity * self.__price + other
-
-    def __radd__(self, other):
-        """Сложение пользовательского значения <int> и стоимости, умноженного на количество на складе"""
-        return other + self.quantity * self.__price
+        """Сложение продуктов с проверкой принадлежности к одному классу, умноженных на количество на складе"""
+        if isinstance(other, type(self)):
+            return self.price * self.quantity + other.price * other.quantity
+        else:
+            raise ValueError('Сложение возможно только двух одинаковых категорий')
 
     def __str__(self):
         """Строковое отображение объекта класса в формате (<name>, <price> руб. Остаток: <quantity> шт.)"""
@@ -46,3 +46,6 @@ class Product:
     def __repr__(self):
         """Отображение информации об объекте класса в режиме отладки (для разработчиков)"""
         return f'{self.__class__.__name__} -> ({self.name}, {self.description}, {self.__price}, {self.quantity}'
+
+    def __del__(self):
+        pass

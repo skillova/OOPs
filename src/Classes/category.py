@@ -1,3 +1,5 @@
+from src.Classes.product import Product
+
 class Category:
     """Класс для категорий товара"""
 
@@ -19,15 +21,17 @@ class Category:
     @set_products.setter
     def set_products(self, new_product):
         """Сеттер приватного атрибута класса <self.__products>"""
-        for product in self.__products:
-            if product.name == new_product.name:
-                product.quantity += new_product.quantity
-                if new_product.price >= 0:
-                    product.price = new_product.price
+        if isinstance(new_product, Product) or issubclass(new_product, Product):
+            for product in self.__products:
+                if product.name == new_product.name:
+                    product.quantity += new_product.quantity
+                    if new_product.price >= 0:
+                        product.price = new_product.price
+                        return
+                else:
+                    self.__products.append(new_product)
                     return
-            else:
-                self.__products.append(new_product)
-                return
+            raise TypeError('Добавляемый объект не относится к классу <Product>')
 
     @property
     def get_format_products(self):
@@ -44,3 +48,6 @@ class Category:
     def __repr__(self):
         """Отображение информации об объекте класса в режиме отладки (для разработчиков)"""
         return f'{self.__class__.__name__} -> "{self.name}, {self.description}, {self.__products}"'
+
+    def __del__(self):
+        pass
