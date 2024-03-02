@@ -1,4 +1,8 @@
-class Product:
+from src.Classes.abstract_class import AbstractProduct
+from src.Classes.mixin_product import MixinClassInfo
+
+
+class Product(AbstractProduct, MixinClassInfo):
     """Класс для описания товара в магазине"""
 
     def __init__(self, name: str, description: str, color: str, price: float, quantity: int) -> None:
@@ -7,6 +11,7 @@ class Product:
         self.__price = price
         self.quantity = quantity
         self.color = color
+        MixinClassInfo.__init__(self)
 
     @classmethod
     def new_product_object(cls, name: str, description: str, color: str, price: float, quantity: int):
@@ -45,7 +50,7 @@ class Product:
 
     def __repr__(self):
         """Отображение информации об объекте класса в режиме отладки (для разработчиков)"""
-        return f'{self.__class__.__name__} -> ({self.name}, {self.description}, {self.__price}, {self.quantity}'
+        return f'{self.__class__.__name__} -> ({self.name}, {self.description}, {self.__price}, {self.quantity})'
 
     def __del__(self):
         pass
