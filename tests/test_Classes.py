@@ -1,7 +1,6 @@
 import pathlib
 import pytest
 
-from src.Classes.product import Product
 from src.Classes.smartphone import SmartPhone
 from src.utils.func import get_data_from_json, get_category_list
 
@@ -63,17 +62,6 @@ def test_category_get_format_products(category_data):
     format_product = category_data[0].set_products[0]
     assert format_product.__str__() == 'ASUS, 210000.0 руб. Остаток: 5 шт.'
 
-
-def test_product_new_product_object():
-    """Тест @classmethod Product"""
-    data_products = ('Dildo', 'vibrato', 'Negro', 50000.0, 13)
-    new_product_obj = Product.new_product_object(*data_products)
-    assert new_product_obj.name == 'Dildo'
-    assert new_product_obj.description == 'vibrato'
-    assert new_product_obj.price == 50000.0
-    assert new_product_obj.quantity == 13
-
-
 def test_category_add_product(category_data):
     """Тест установки цены и изменения цены с условием через декоратор @property"""
     category = category_data[0]
@@ -81,26 +69,23 @@ def test_category_add_product(category_data):
     assert category.set_products[0].price == 210000.0
     assert category.set_products[0].quantity == 5
 
-    data_products = ("ASUS",
-                     "ROG Phone 7 Ultimate",
-                     "3.2 Ghz",
-                     "16/512 ГБ",
-                     "White",
+    data_products = ("ASUS", "ROG Phone 7 Ultimate", "3.2 Ghz", "16/512 ГБ", "White",
                      "ASUS ROG Phone 7 Ultimate 16/512 ГБ, Dual nano SIM, белый",
-                     100.0,
-                     5)
+                     100.0, 5)
     new_product = SmartPhone(*data_products)
     category.set_products = new_product
     assert category.set_products[0].name == "ASUS"
     assert category.set_products[0].price == 100.0
     assert category.set_products[0].quantity == 10
 
-    data_products = ('Dildo', 'vibrato', 'Negro', 60000.0, 100)
-    new_product = Product.new_product_object(*data_products)
+    data_products = ('Infinix', 'Note 30i', '2 Ghz', '8/256 Гб', 'Black',
+                     'Infinix NOTE 30i — смартфон, объединивший в себе высокую производительность, яркий дизайн',
+                     10000.0, 25)
+    new_product = SmartPhone(*data_products)
     category.set_products = new_product
-    assert category.set_products[-1].name == 'Dildo'
-    assert category.set_products[-1].price == 60000.0
-    assert category.set_products[-1].quantity == 100
+    assert category.set_products[-1].name == 'Infinix'
+    assert category.set_products[-1].price == 10000.0
+    assert category.set_products[-1].quantity == 25
 
     with pytest.raises(TypeError) as type_err:
         category.set_products('OtherClass')
