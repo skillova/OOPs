@@ -1,4 +1,7 @@
-class Product:
+from src.Classes.abstract_class import AbstractProduct
+
+
+class Product(AbstractProduct):
     """Класс для описания товара в магазине"""
 
     def __init__(self, name: str, description: str, color: str, price: float, quantity: int) -> None:
@@ -45,7 +48,7 @@ class Product:
 
     def __repr__(self):
         """Отображение информации об объекте класса в режиме отладки (для разработчиков)"""
-        return f'{self.__class__.__name__} -> ({self.name}, {self.description}, {self.__price}, {self.quantity}'
+        return f'{self.__class__.__name__} -> {self.__dict__.values()}'
 
     def __del__(self):
         pass
