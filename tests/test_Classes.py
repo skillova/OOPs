@@ -103,6 +103,7 @@ def test_product_add_(category_data):
     asus = category_data[0].set_products[0]
     samsung = category_data[0].set_products[1]
     canada_green = category_data[1].set_products[0]
+    print(type(asus))
     assert (asus + samsung) == 2750000.0
     with pytest.raises(ValueError) as val_err:
         error = asus + canada_green
