@@ -46,9 +46,5 @@ class Product(AbstractProduct):
         """Строковое отображение объекта класса в формате (<name>, <price> руб. Остаток: <quantity> шт.)"""
         return f'{self.name}, {self.__price} руб. Остаток: {self.quantity} шт.'
 
-    def __repr__(self):
-        """Отображение информации об объекте класса в режиме отладки (для разработчиков)"""
-        return f'{self.__class__.__name__} -> {self.__dict__.values()}'
-
     def __del__(self):
         pass

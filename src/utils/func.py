@@ -32,5 +32,6 @@ def get_category_list(data):
         category_list.append(Category(ctg_name, ctg_description, product_object_list))
     return category_list
 
-ctg_prod = get_data_from_json(path)
-object_list = get_category_list(ctg_prod)
+
+# ctg_prod = get_data_from_json(path)
+# object_list = get_category_list(ctg_prod)

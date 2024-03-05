@@ -1,4 +1,10 @@
 class MixinClassInfo:
 
-    def __init__(self, *args, **kwargs):
-        print(f'создан объект со свойствами: {self.__repr__()}')
+    def __init__(self, *args):
+        print(repr(self))
+
+    def __repr__(self):
+        object_attributes = ''
+        for k, v in self.__dict__.items():
+            object_attributes += f'{k}: {v}'
+        return f"создан объект со свойствами {object_attributes}"

@@ -17,9 +17,5 @@ class AbstractProduct(ABC):
         """Строковое отображение объекта класса в формате (<name>, <price> руб. Остаток: <quantity> шт.)"""
 
     @abstractmethod
-    def __repr__(self):
-        """Отображение информации об объекте класса в режиме отладки (для разработчиков)"""
-
-    @abstractmethod
     def __del__(self):
         """Делитер"""
