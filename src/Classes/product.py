@@ -37,7 +37,7 @@ class Product(AbstractProduct):
 
     def __add__(self, other):
         """Сложение продуктов с проверкой принадлежности к одному классу, умноженных на количество на складе"""
-        if isinstance(other, type(self)):
+        if isinstance(self, type(other)) and isinstance(other, type(self)):
             return self.price * self.quantity + other.price * other.quantity
         else:
             raise ValueError('Сложение возможно только двух одинаковых категорий')
