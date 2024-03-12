@@ -1,3 +1,5 @@
+import statistics
+
 from src.Classes.product import Product
 
 
@@ -12,7 +14,7 @@ class Category:
         self.description = description
         self.__products = products
         Category.instance_counter += 1
-        Category.product_counter += len(self.__products)
+        Category.product_counter += 1
 
     @property
     def set_products(self):
@@ -22,6 +24,8 @@ class Category:
     @set_products.setter
     def set_products(self, new_product):
         """Сеттер приватного атрибута класса <self.__products>"""
+        if new_product.quantity <= 0:
+            raise ValueError('Товар с нулевым количеством не может быть добавлен')
         if isinstance(new_product, Product) or issubclass(new_product, Product):
             for product in self.__products:
                 if product.name == new_product.name:
@@ -41,6 +45,16 @@ class Category:
         for product in self.__products:
             product_list.append(product.__str__())
         return product_list
+
+    def get_average_price(self):
+        """Возвращает средний ценник продуктов"""
+        try:
+            price_list = (prc.price for prc in self.__products)
+            average = round(statistics.mean(price_list), 2)
+        except statistics.StatisticsError:
+            average = 0
+        return average
+
 
     def __str__(self):
         """Строковое отображение объекта класса в формате (<name>, количество продуктов: <XXX> шт.)"""

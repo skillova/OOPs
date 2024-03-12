@@ -1,4 +1,5 @@
 import json
+
 import pathlib
 
 from src.Classes.category import Category
@@ -31,7 +32,3 @@ def get_category_list(data):
                 product_object_list.append(product_object)
         category_list.append(Category(ctg_name, ctg_description, product_object_list))
     return category_list
-
-
-# ctg_prod = get_data_from_json(path)
-# object_list = get_category_list(ctg_prod)
