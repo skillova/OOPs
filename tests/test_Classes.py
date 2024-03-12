@@ -91,6 +91,12 @@ def test_category_add_product(category_data):
         category.set_products('OtherClass')
     assert "'list' object is not callable" in str(type_err.value)
 
+    data_products = ('Infinix', 'Note 30i', '2 Ghz', '8/256 Гб', 'Black',
+                     'Infinix NOTE 30i — смартфон, объединивший в себе высокую производительность, яркий дизайн',
+                     10000.0, 0)
+    new_product = SmartPhone(*data_products)
+    with pytest.raises(ValueError, match='Товар с нулевым количеством не может быть добавлен'):
+        category.set_product = new_product
 
 def test_category_str_(category_data):
     """Тест отображения объекта класса <Category> в формате (<name>, количество продуктов: <XXX> шт."""
